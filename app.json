@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "pay-me-connor-client",
+    "description": "This project is really great.",
+    "slug": "pay-me-connor-client",
+    "privacy": "public",
+    "sdkVersion": "28.0.0",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/pay-me-connor-icon-1.png",
+    "splash": {
+      "image": "./assets/pay-me-connor-icon-1.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
