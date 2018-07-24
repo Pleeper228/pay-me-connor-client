@@ -22,13 +22,21 @@ const Modal = () => {
 
 const list = [
   {
+    title: 'Contact',
+    actionName: 'pop'
+  },
+  {
     title: 'Homes',
     actionName: 'home'
   },
   {
+    title: 'About',
+    actionName: 'pop'
+  },
+  {
     title: 'Sign Out',
     actionName: 'login'
-  },
+  }
 ]
 
 

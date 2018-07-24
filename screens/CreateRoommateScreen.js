@@ -3,19 +3,29 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements'
 
-class LogIn extends React.Component {
-  logIn() {
-    Actions.paymentsTab()
+const roommatesURL = 'http://localhost:3000/api/v1/houses/current/roommates'
+
+class CreateRoommate extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      roommateName: ''
+    }
+    this.onValueChangeName = this.onValueChangeName.bind(this)
+  }
+
+  onValueChangeName(value: string) {
+    this.setState({
+      roommateName: value
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <FormLabel>Email</FormLabel>
-        <FormInput containerStyle={styles.inputContainer} />
-        <FormLabel>Password</FormLabel>
-        <FormInput secureTextEntry containerStyle={styles.inputContainer} />
-        <Button buttonStyle={styles.buttonStyle} onPress={this.logIn} title='Log In' />
+        <FormLabel>Roommate Name</FormLabel>
+        <FormInput containerStyle={styles.inputContainer} onChangeText={this.onValueChangeName}/>
+        <Button buttonStyle={styles.buttonStyle} onPress={() => this.props.createRoommate(this.state.roommateName)} title='Add Roommate' />
       </View>
     )
   }
@@ -49,4 +59,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LogIn;
+export default CreateRoommate;
