@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { FormLabel, FormInput, FormValidationMessage, Button, Card } from 'react-native-elements'
 
-class DeletePaymentScreen extends React.Component {
+class ArchiveRoommateScreen extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -11,8 +11,8 @@ class DeletePaymentScreen extends React.Component {
   render() {
     return (
       <Card style={styles.container}>
-        <Text style={styles.text}>Are you sure you want to delete this payment?</Text>
-        <Button buttonStyle={styles.confirmButtonStyle} onPress={() => this.props.deletePayment(this.props.paymentId)} title='Delete Payment' />
+        <Text style={styles.text}>Are you sure you want to delete this roommate?</Text>
+        <Button buttonStyle={styles.confirmButtonStyle} onPress={() => this.props.archiveRoommate(this.props.roommateId)} title='Delete Roommate' />
         <Button buttonStyle={styles.cancelButtonStyle} onPress={() => Actions.pop()} title='Cancel' />
       </Card>
     )
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DeletePaymentScreen;
+export default ArchiveRoommateScreen;

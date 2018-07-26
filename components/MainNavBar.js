@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Header } from 'react-native-elements';
 import Menu from '../components/Menu'
+import BackButton from './BackButton'
+import HeaderTitle from './HeaderTitle'
 
 const styles = StyleSheet.create({
   container: {
@@ -22,8 +24,9 @@ class MainNavBar extends React.Component {
   render() {
     return (
       <Header
+        leftComponent={<BackButton />}
         rightComponent={<Menu />}
-        centerComponent={{ text: 'Pay Me Connor', style: { color: '#fff' } }}
+        centerComponent={<HeaderTitle />}
         backgroundColor='#FF584B'
       />
     )

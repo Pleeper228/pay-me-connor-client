@@ -15,63 +15,35 @@ const styles = StyleSheet.create({
 });
 
 class RoommatesScreen extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      roommates: []
-    }
-    this.createRoommate = this.createRoommate.bind(this)
-  }
-
-  componentDidMount() {
-    fetch(roommatesURL)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          roommates: res
-        })
-      })
-  }
-
   totalBills() {
     let allTotalBills = this.props.bills.reduce((total, bill) => {
+      let totalMinusValue = 0
+      bill.payments.forEach(payment => {
+        let foundMatch = false
+        this.props.roommates.forEach(roommate => {
+          if (payment.roommate_id === roommate.id) {
+            foundMatch = true
+          }
+        })
+        if (!foundMatch) {
+          totalMinusValue += payment.amount
+        }
+      })
       total += bill.amount
+      total -= totalMinusValue
       return total
     }, 0)
-    let totalBillsPerPerson = allTotalBills / this.state.roommates.length
+    let totalBillsPerPerson = allTotalBills / this.props.roommates.length
     return totalBillsPerPerson
-  }
-
-  createRoommate(roommateName) {
-    fetch(roommatesURL, {
-      method: 'POST',
-      body: JSON.stringify({
-        "name": roommateName
-      }),
-      headers: new Headers({"Content-Type": "application/json"})
-    })
-      .then(res => res.json())
-      .then(res => {
-        let currentRoommates = this.state.roommates
-        res.amount_paid = 0
-        currentRoommates.push(res)
-        this.setState({
-          roommates: currentRoommates
-        })
-      })
-      .then(Actions.pop())
-      .catch(err => {
-        console.error(err)
-      })
   }
 
   render() {
     return (
       <ScrollView>
-        <Button buttonStyle={styles.buttonStyle} onPress={() => Actions.createRoommate({ createRoommate: this.createRoommate })} title='Add Roommate' />
+        <Button buttonStyle={styles.buttonStyle} onPress={() => Actions.createRoommate({ createRoommate: this.props.createRoommate })} title='Add Roommate' />
         <Card>
           {
-            this.state.roommates.map((roommate, i) => {
+            this.props.roommates.map((roommate, i) => {
               return <ListItem
                 roundAvatar
                 avatar={require('../assets/pay-me-connor-icon-1.png')}
@@ -79,7 +51,8 @@ class RoommatesScreen extends Component {
                 title={roommate.name}
                 rightTitle={'owes $' + (this.totalBills() - roommate.amount_paid).toFixed(2).toString()}
                 rightTitleStyle={{ color: '#666' }}
-                hideChevron
+                rightIcon={{name: 'delete', color: '#a6a6a6', type: 'material-community'}}
+                onPressRightIcon={() => Actions.archiveRoommate({ roommateId: roommate.id, archiveRoommate: this.props.archiveRoommate })}
                 onPress={() => Actions.roommate({roommate: roommate})}
               />
             })
