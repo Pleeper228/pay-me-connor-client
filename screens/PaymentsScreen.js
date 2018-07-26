@@ -28,7 +28,7 @@ class PaymentsScreen extends Component {
                   <ListItem
                     key={'payment' + i}
                     roundAvatar
-                    avatar={require('../assets/pay-me-connor-icon-1.png')}
+                    avatar={this.props.getPic(payment.roommate_name)}
                     title={<ListPayment payment={payment} />}
                     subtitle={formatedDate}
                     onPressRightIcon={() => Actions.deletePayment({ paymentId: payment.id, deletePayment: this.props.deletePayment })}

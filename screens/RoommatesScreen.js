@@ -46,7 +46,7 @@ class RoommatesScreen extends Component {
             this.props.roommates.map((roommate, i) => {
               return <ListItem
                 roundAvatar
-                avatar={require('../assets/pay-me-connor-icon-1.png')}
+                avatar={this.props.getPic(roommate.name)}
                 key={i}
                 title={roommate.name}
                 rightTitle={'owes $' + (this.totalBills() - roommate.amount_paid).toFixed(2).toString()}

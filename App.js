@@ -43,14 +43,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(paymentsURL)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          payments: res
-        })
-      })
-
     fetch(billsURL)
       .then(res => res.json())
       .then(res => {
@@ -80,7 +72,11 @@ export default class App extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
+        let currentRoommates = this.state.roommates
         let currentRoommate = this.state.roommates.filter(roommate => res.roommate_id === roommate.id)[0]
+        currentRoommate.amount_paid += res.amount
+        currentRoommates.splice(currentRoommates.indexOf(currentRoommate), 1)
+        currentRoommates.unshift(currentRoommate)
         res.roommate_name = currentRoommate.name
         let currentBills = this.state.bills
         currentBills.forEach(bill => {
@@ -89,7 +85,8 @@ export default class App extends React.Component {
           }
         })
         this.setState({
-          bills: currentBills
+          bills: currentBills,
+          roommates: currentRoommates
         })
       })
       .then(Actions.pop())
@@ -151,15 +148,22 @@ export default class App extends React.Component {
       .then(res => res.json())
       .then(() => {
         let currentBills = this.state.bills
+        let currentRoommates = this.state.roommates
         currentBills.forEach(bill => {
           bill.payments.forEach((payment, i) => {
             if (payment.id === payment_id) {
               bill.payments.splice(i, 1)
-              this.setState({
-                bills: currentBills
+              currentRoommates.forEach(roommate => {
+                if (payment.roommate_id === roommate.id) {
+                  roommate.amount_paid -= payment.amount
+                }
               })
             }
           })
+        })
+        this.setState({
+          bills: currentBills,
+          roommates: currentRoommates
         })
       })
       .then(Actions.pop())
@@ -188,6 +192,18 @@ export default class App extends React.Component {
       .then(Actions.pop())
   }
 
+  getPic(name) {
+    if (name === 'Connor') {
+      return require('./assets/connor.jpg')
+    } else if (name === 'Audrey') {
+      return require('./assets/audrey.jpg')
+    } else if (name === 'Charlotte') {
+      return require('./assets/charlotte.jpg')
+    } else {
+      return require('./assets/pay-me-connor-icon-2.png')
+    }
+  }
+
   render() {
     return (
       <Router navBar={MainNavBar} >
@@ -197,12 +213,12 @@ export default class App extends React.Component {
           <Scene key="home" gesturesEnabled={false} title="Home" name='home' component={ScarletScreen} />
           <Scene key='tab-bar' tabBarStyle={{ backgroundColor: '#f2f2f2' }} tabs modal>
             <Scene key="paymentsTab" hideNavBar size={22} name='dollar' title="Payments" icon={TabIcon}>
-              <Scene key='payments' component={() => <PaymentsScreen bills={this.state.bills} deletePayment={this.deletePayment} />} backTitle='Back' title='Black' />
+              <Scene key='payments' component={() => <PaymentsScreen bills={this.state.bills} deletePayment={this.deletePayment} getPic={this.getPic} />} backTitle='Back' title='Black' />
               <Scene key='createPayment' component={() => <CreatePaymentScreen roommates={this.state.roommates} bills={this.state.bills} createPayment={this.createPayment} />} backTitle='Back' title='Add Payment' />
               <Scene key='deletePayment' component={DeletePaymentScreen} backTitle='Back' title='Delete Payment' />
             </Scene>
             <Scene key="roommatesTab" hideNavBar size={20} name='users' title="Roommates" icon={TabIcon}>
-              <Scene key='roommates' component={() => <RoommatesScreen bills={this.state.bills} roommates={this.state.roommates} createRoommate={this.createRoommate} archiveRoommate={this.archiveRoommate} />} backTitle='Back' title='Roommates' />
+              <Scene key='roommates' component={() => <RoommatesScreen bills={this.state.bills} roommates={this.state.roommates} createRoommate={this.createRoommate} archiveRoommate={this.archiveRoommate} getPic={this.getPic} />} backTitle='Back' title='Roommates' />
               <Scene key='roommate' component={RoommateScreen} backTitle='Back' title='Roommate' />
               <Scene key='createRoommate' component={CreateRoommateScreen} title='Add Roommate' />
               <Scene key='archiveRoommate' component={ArchiveRoommateScreen} title='Delete Roommate' />

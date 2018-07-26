@@ -10,7 +10,7 @@ class ListPayment extends React.Component {
 
   render() {
     return (
-      <Text style={{ marginLeft: '4%', fontSize: 16 }}>
+      <Text style={{ marginLeft: 9, fontSize: 16 }}>
         {this.props.payment.roommate_name}
         <Text style={{ color: '#00c9a4', fontWeight: 'bold' }}> paid </Text>
         ${this.props.payment.amount}
