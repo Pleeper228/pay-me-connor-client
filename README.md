@@ -6,11 +6,12 @@ Pay Me Connor is a mobile app that allows users to track bills and payments betw
 
 ---
 
+<img src="https://media.giphy.com/media/XoywQKznL9QaQlnaY8/giphy.gif" width="20%" align="right">
+
+
 This is the client side React Native app for Pay Me Connor. It talks to an Express server and a Postgres database to store information. A link to the server repo can be found [here](https://github.com/Pleeper228/pay-me-connor-server).
 
 ---
-
-<img src="https://media.giphy.com/media/XoywQKznL9QaQlnaY8/giphy.gif" width="20%" align="right">
 
 To install locally make sure the the API server is running then just npm install and open the app in your simulator of choice!
 
