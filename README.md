@@ -1,5 +1,7 @@
 # Pay Me Connor Mobile App
 
+<img src="assets/pay-me-connor-icon-2.png" width="45%" align="right">
+
 Pay Me Connor is a mobile app that allows users to track bills and payments between roommates. The app is built in React Native and talks to an Express server hosted on Heroku.
 
 ---
@@ -8,17 +10,11 @@ This is the client side React Native app for Pay Me Connor. It talks to an Expre
 
 ---
 
+<img src="https://media.giphy.com/media/XoywQKznL9QaQlnaY8/giphy.gif" width="20%" align="right">
+
 To install locally make sure the the API server is running then just npm install and open the app in your simulator of choice!
 
 The app is now available!
-
-<div style="display:flex;>
-  <img src="assets/pay-me-connor-icon-2.png" width="45%">
-  <img src="https://media.giphy.com/media/XoywQKznL9QaQlnaY8/giphy.gif" width="20%" align="right">
-</div>
-
-
-
 
 ---
 
