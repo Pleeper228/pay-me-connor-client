@@ -13,8 +13,12 @@ To install locally make sure the the API server is running then just npm install
 The app is now available!
 
 <div style="display:flex; align-items:center;">
-  <img src="assets/pay-me-connor-icon-2.png" width="45%" style="margin-bottom:55px;">
-  <img src="https://media.giphy.com/media/XoywQKznL9QaQlnaY8/giphy.gif" style="border-radius:15px; height:100%;">
+  <div style="margin-bottom:55px;">
+    <img src="assets/pay-me-connor-icon-2.png" width="45%">
+  </div>
+  <div style="border-radius:15px; height:100%;">
+    <img src="https://media.giphy.com/media/XoywQKznL9QaQlnaY8/giphy.gif">
+  </div>
 </div>
 
 
