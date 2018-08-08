@@ -1,4 +1,4 @@
-<img src="assets/pay-me-connor-icon-2.png" width="100" align="left">
+<img src="assets/pay-me-connor-icon-2.png" width="100" height="100" align="left">
 
 # Pay Me Connor Mobile App
 
