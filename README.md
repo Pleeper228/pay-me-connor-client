@@ -1,6 +1,6 @@
 # Pay Me Connor Mobile App
 
-<img src="assets/pay-me-connor-icon-2.png" width="45%" align="left">
+<img src="assets/pay-me-connor-icon-2.png" width="100" align="left">
 
 Pay Me Connor is a mobile app that allows users to track bills and payments between roommates. The app is built in React Native and talks to an Express server hosted on Heroku.
 
