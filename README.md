@@ -14,7 +14,7 @@ The app is now available!
 
 <div style="display:flex; align-items:center;">
   <img src="assets/pay-me-connor-icon-2.png" width="45%" style="margin-bottom:55px;">
-  <img src="https://media.giphy.com/media/XoywQKznL9QaQlnaY8/giphy.gif" height="100%" style="border-radius:15px;">
+  <img src="https://media.giphy.com/media/XoywQKznL9QaQlnaY8/giphy.gif" style="border-radius:15px; height:100%;">
 </div>
 
 
